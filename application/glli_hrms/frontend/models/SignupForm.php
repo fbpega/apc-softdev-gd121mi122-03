@@ -28,6 +28,15 @@ class SignupForm extends Model
     public function rules()
     {
         return [
+            ['firstname', 'required'],
+            ['middlename', 'required'],
+            ['lastname', 'required'],
+            ['gender', 'required'],
+            ['birthdate', 'required'],
+            ['designation', 'required'],
+            ['department', 'required'],
+            ['address', 'required'],
+
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
