@@ -10,14 +10,7 @@ use Yii;
  */
 class SignupForm extends Model
 {
-    public $firstname;
-    public $middlename;
-    public $lastname;
-    public $gender;
-    public $birthdate;
-    public $designation;
-    public $department;
-    public $address;
+
     public $username;
     public $email;
     public $password;
@@ -28,14 +21,6 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['firstname', 'required'],
-            ['middlename', 'required'],
-            ['lastname', 'required'],
-            ['gender', 'required'],
-            ['birthdate', 'required'],
-            ['designation', 'required'],
-            ['department', 'required'],
-            ['address', 'required'],
 
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
@@ -61,13 +46,6 @@ class SignupForm extends Model
     {
         if ($this->validate()) {
             $user = new User();
-            $user->firstname = $this->firstname;
-            $user->middlename = $this->middlename;
-            $user->lastname = $this->lastname;
-            $user->birthdate = $this->birthdate;
-            $user->designation = $this->designation;
-            $user->department = $this->department;
-            $user->address = $this->address;
             $user->username = $this->username;
             $user->email = $this->email;
             $user->setPassword($this->password);

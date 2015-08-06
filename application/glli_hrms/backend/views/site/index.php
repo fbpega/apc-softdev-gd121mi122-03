@@ -1,52 +1,23 @@
 <?php
 /* @var $this yii\web\View */
-
-$this->title = 'My Yii Application';
+$this->title = 'GreatLeaf HRMS';
 ?>
-<div class="site-index">
-
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
+<html>
+<head><link rel="stylesheet" type="text/css" href="css/glli.css"></head>
+<div style="position: absolute; left: 9%; top: 8%; text-align: center;">
+    <br>
+        <h2>Welcome back, <?php echo Yii::$app->user->identity->username ?>!</h2>
+        <br>
 
     </div>
-</div>
+            <div id="attendance_button" class="menu">
+                <a href=""><span><div style="height:70px; width:80px; background-image: url(<?php echo "images/attendance.png";?>); position:absolute; top:5px;"></div></span><span data-title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MY PROFILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">MY PROFILE</span></a>
+            </div>
+            <div id="payroll_button" class="menu">
+                <a href=""><span><div style="height:70px; width:80px; background-image: url(<?php echo "images/payroll.png";?>); position:absolute; top:5px;"></div></span><span data-title="&nbsp;&nbsp;&nbsp;&nbsp;MY DTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">MY DTR</span></a>
+            </div>
+            <div id="employee_button" class="menu">
+                <a href=""><span><div style="height:70px; width:80px; background-image: url(<?php echo "images/employees.png";?>); position:absolute; top:5px;"></div></span><span data-title="FILE REQUESTS&nbsp;&nbsp;&nbsp;&nbsp;">FILE REQUESTS</span></a>
+            </div>
+
+</html>
