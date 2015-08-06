@@ -26,7 +26,7 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'Great Leaf Land Inc.',
+                'brandLabel' => 'GreatLeaf Land Inc. HRMS',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
@@ -34,13 +34,10 @@ AppAsset::register($this);
             ]);
             $menuItems = [
                 ['label' => 'Home', 'url' => ['/site/index']],
-                ['label' => 'Daily Time Record', 'url' => ['/site/about']],
-                ['label' => 'Employees', 'url' => ['/site/contact']],
-                ['label' => 'Request Forms', 'url' => ['/site/request']],
             ];
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+                $menuItems[] = ['label' => 'System Login', 'url' => ['/site/login']];
             } else {
                 $menuItems[] = [
                     'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
@@ -66,7 +63,7 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-        <p class="pull-left">&copy; Great Leaf Land Inc. <?= date('Y') ?></p>
+        <p class="pull-right">&copy; GreatLeaf Land Inc. <?= date('Y') ?></p>
         </div>
     </footer>
 
