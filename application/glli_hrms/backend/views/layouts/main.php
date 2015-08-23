@@ -63,7 +63,7 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-        <p class="pull-right">&copy; GreatLeaf Land Inc. <?= date('Y') ?></p>
+        <p class="pull-right">&copy; GreatLeaf Land Inc. <?= date('Y') ?></p>   
         </div>
     </footer>
 
