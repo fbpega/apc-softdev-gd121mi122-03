@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-$this->title = 'GreatLeaf HRMS';
+$this->title = 'GreatLeaf HRM';
 ?>
 <div class="site-index">
     
