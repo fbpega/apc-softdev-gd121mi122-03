@@ -13,14 +13,21 @@ $this->title = 'GreatLeaf HRM';
          
 
         <div class="body-content">
-            <?php $form = ActiveForm::begin();?>
-            <?= $form->field($model, 'username')->textArea(['rows' => '1'])->label('Username'); ?>
-            <?= $form->field($model, 'password')->textArea(['rows' => '1'])->label('Password'); ?>
+            <form style="text-align: center; position: absolute; left: 10%; top: 45%;">
+                <div id="username">
+                       Username:
+                       <input name="username"></input>
+                </div>
+                <div id="password">
+                       Password:&nbsp;
+                       <input name="Password:" type="password"></input>
+                </div>
 
-            <div class="form-group">
-                <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
-            </div>
-            <?php ActiveForm::end(); ?>
+                <div class="jumbotron" style="position: absolute; left: 11%; top: 50%;">
+                   <p><a class="btn btn-lg btn-success">Login!</a></p>
+               </div>
+
+            </form>
         </div>
 </div>
 

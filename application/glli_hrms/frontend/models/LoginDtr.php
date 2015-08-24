@@ -12,7 +12,7 @@ class LoginDtr extends Model
 	public function rules()
 	{
 		return [
-		['username','password'], 'required'],
+			[['username','password'], 'required'],
 		];
 	}
 }

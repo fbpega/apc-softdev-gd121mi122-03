@@ -12,6 +12,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use app\models\LoginDtr;
 
 /**
  * Site controller
@@ -78,7 +79,9 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->render('menu', [
+                'model' => $model,
+            ]);
         } else {
             return $this->render('login', [
                 'model' => $model,
@@ -167,5 +170,19 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+    public function actionDtr()
+    {
+        $model = new LoginDtr;
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()){
+            //return $this->render('view', ['model' => $model]);
+        } else {
+            //return $this->render('create', ['model' => $model]);
+        }
+
+        return $this->render('loginDtr',['model'=>$model]);
+
     }
 }
