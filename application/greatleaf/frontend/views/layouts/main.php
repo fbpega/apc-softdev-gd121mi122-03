@@ -53,7 +53,7 @@ AppAsset::register($this);
                         ['label' => 'Official Business', 'url' => '#'],
                         ]],
                     ],
-    ]);
+        ]);
 
         $menuItems[] = [
             'label' => 'Logout (' . Yii::$app->user->identity->username . ')',

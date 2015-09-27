@@ -28,6 +28,9 @@ class Employee extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+
+    public $file;
+
     public static function tableName()
     {
         return 'employee';
@@ -42,10 +45,12 @@ class Employee extends \yii\db\ActiveRecord
             [['firstname', 'lastname', 'address', 'contact', 'department', 'position', 'gender', 'dob'], 'required'],
             [['dob'], 'safe'],
             [['request_id'], 'integer'],
+            [['file'],'file'],
             [['firstname', 'middlename', 'lastname', 'address'], 'string', 'max' => 100],
             [['contact', 'department', 'position'], 'string', 'max' => 45],
             [['image'], 'string', 'max' => 200],
             [['gender'], 'string', 'max' => 1]
+
         ];
     }
 
@@ -67,6 +72,7 @@ class Employee extends \yii\db\ActiveRecord
             'gender' => 'Gender',
             'dob' => 'Birthdate',
             'request_id' => 'Request ID',
+            'file' => 'Image',
         ];
     }
 

@@ -62,7 +62,8 @@ class EmployeeController extends Controller
     {
         $model = new Employee();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) 
+        {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

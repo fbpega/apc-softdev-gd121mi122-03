@@ -11,7 +11,7 @@ use dosamigos\datepicker\DatePicker;
 
 <div class="employee-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'firstname')->textInput(['maxlength' => true]) ?>
 
@@ -27,7 +27,7 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'position')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'file')->fileInput(); ?>
 
     <?= $form->field($model, 'gender')->textInput(['maxlength' => true]) ?>
 
