@@ -44,7 +44,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-left'],
         'items' => [
                         ['label' => 'Employee', 'items' => [
-                        ['label' => 'Create Employee', 'url' => '#'],
+                        ['label' => 'Create Employee', 'url' => '?r=employee%2Fcreate'],
                         ['label' => 'Manage Employees', 'url' => '#'],
                         ]],
                     ],

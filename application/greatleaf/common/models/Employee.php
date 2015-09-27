@@ -56,16 +56,16 @@ class Employee extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'firstname' => 'Firstname',
-            'middlename' => 'Middlename',
-            'lastname' => 'Lastname',
+            'firstname' => 'First name',
+            'middlename' => 'Middle name',
+            'lastname' => 'Last name',
             'address' => 'Address',
             'contact' => 'Contact',
             'department' => 'Department',
             'position' => 'Position',
             'image' => 'Image',
             'gender' => 'Gender',
-            'dob' => 'Dob',
+            'dob' => 'Birthdate',
             'request_id' => 'Request ID',
         ];
     }
