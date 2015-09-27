@@ -43,13 +43,23 @@ AppAsset::register($this);
         echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],
         'items' => [
-                        ['label' => 'Manage', 'items' => [
-                        ['label' => 'Employees', 'url' => '#'],
-                        ['label' => 'Daily Track Records', 'url' => '#'],
-                        ['label' => 'Requests', 'url' => '#'],
+                        ['label' => 'Employee', 'items' => [
+                        ['label' => 'Create Employee', 'url' => '#'],
+                        ['label' => 'Manage Employees', 'url' => '#'],
                         ]],
                     ],
         ]);
+
+        echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-left'],
+        'items' => [
+                        ['label' => 'Requests', 'items' => [
+                        ['label' => 'Submission List', 'url' => '#'],
+                        ['label' => 'Manage Requests', 'url' => '#'],
+                        ]],
+                    ],
+        ]);
+
         $menuItems[] = [
             'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
             'url' => ['/site/logout'],
