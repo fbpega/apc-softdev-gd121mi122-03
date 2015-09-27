@@ -42,22 +42,8 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'My Profile', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Daily Track Record', 'url' => ['/site/login']];
         
-        
-
-        $menuItems[] = [
-            'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-            'url' => ['/site/logout'],
-            'linkOptions' => ['data-method' => 'post']
-        ];   
-    }
-
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-left'],
         'items' => [
                         ['label' => 'Submit Requests', 'items' => [
                         ['label' => 'Overtime', 'url' => '#'],
@@ -68,6 +54,20 @@ AppAsset::register($this);
                         ]],
                     ],
     ]);
+
+        $menuItems[] = [
+            'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+            'url' => ['/site/logout'],
+            'linkOptions' => ['data-method' => 'post']
+        ];
+    }
+
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items' => $menuItems,
+    ]);
+
+    
     NavBar::end();
     ?>
 
@@ -82,7 +82,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-right">&copy; Greatleaf Land Inc. <?= date('Y') ?></p>
+        <p class="pull-right">&copy; Greatleaf Land Inc.    <?= date('Y') ?></p>
 
     </div>
 </footer>
