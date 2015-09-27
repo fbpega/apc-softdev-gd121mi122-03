@@ -36,12 +36,11 @@ AppAsset::register($this);
     ]);
      
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Home', 'url' => ['/site/index']];
     } else {
         $menuItems[] = ['label' => 'My Profile', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'My DTR', 'url' => ['/site/login']];
-        $menuItems[] = ['label' => 'My Requests', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'My DTR', 'url' => ['#']];
+        $menuItems[] = ['label' => 'My Requests', 'url' => ['#']];
         
         echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],
