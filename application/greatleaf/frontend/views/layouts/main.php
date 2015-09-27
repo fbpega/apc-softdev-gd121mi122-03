@@ -40,7 +40,8 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
         $menuItems[] = ['label' => 'My Profile', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Daily Track Record', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'My DTR', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'My Requests', 'url' => ['/site/login']];
         
         echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],
