@@ -8,6 +8,7 @@ use common\models\SearchOvertime;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * OvertimeController implements the CRUD actions for Overtime model.
@@ -32,13 +33,20 @@ class OvertimeController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SearchOvertime();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if( Yii::$app->user->can('index-overtime'))
+        {
+            $searchModel = new SearchOvertime();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }else
+        {
+            throw new ForbiddenHttpException;
+        }
+        
     }
 
     /**
