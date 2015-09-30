@@ -68,15 +68,22 @@ class OvertimeController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Overtime();
+        if( Yii::$app->user->can('create-overtime'))
+        {
+            $model = new Overtime();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
+        }else
+        {
+            throw new ForbiddenHttpException;
         }
+        
     }
 
     /**
@@ -87,15 +94,23 @@ class OvertimeController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if( Yii::$app->user->can('update-overtime'))
+        {
+            $model = $this->findModel($id);
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
+        }else
+        {
+            throw new ForbiddenHttpException;
         }
+        
     }
 
     /**
@@ -106,9 +121,16 @@ class OvertimeController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if( Yii::$app->user->can('update-overtime'))
+        {
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }else
+        {
+            throw new ForbiddenHttpException;
+        }
+        
     }
 
     /**
