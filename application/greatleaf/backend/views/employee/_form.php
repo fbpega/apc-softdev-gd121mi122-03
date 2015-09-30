@@ -27,7 +27,7 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'position')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'file')->fileInput(); ?>
+    
 
     <?= $form->field($model, 'gender')->textInput(['maxlength' => true]) ?>
 

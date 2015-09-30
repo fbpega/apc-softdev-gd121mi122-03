@@ -45,7 +45,7 @@ AppAsset::register($this);
         'items' => [
                         ['label' => 'Employee', 'items' => [
                         ['label' => 'Create Employee', 'url' => '?r=employee%2Fcreate'],
-                        ['label' => 'Manage Employees', 'url' => '#'],
+                        ['label' => 'Manage Employees', 'url' => '?r=employee%2Findex'],
                         ]],
                     ],
         ]);
