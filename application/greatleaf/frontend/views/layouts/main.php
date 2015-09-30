@@ -47,11 +47,11 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-left'],
         'items' => [
                         ['label' => 'Submit Requests', 'items' => [
-                        ['label' => 'Overtime', 'url' => '#'],
-                        ['label' => 'Leave', 'url' => '#'],
-                        ['label' => 'Cash Voucher', 'url' => '#'],
-                        ['label' => 'Job Accomplishment', 'url' => '#'],
-                        ['label' => 'Official Business', 'url' => '#'],
+                        ['label' => 'Overtime', 'url' => '?r=overtime%2Fcreate'],
+                        ['label' => 'Leave', 'url' => '?r=leave%2Fcreate'],
+                        ['label' => 'Cash Voucher', 'url' => '?r=cashvoucher%2Fcreate'],
+                        ['label' => 'Job Accomplishment', 'url' => '?r=jobacc%2Fcreate'],
+                        ['label' => 'Official Business', 'url' => '?r=officialbusiness%2Fcreate'],
                         ]],
                     ],
         ]);
