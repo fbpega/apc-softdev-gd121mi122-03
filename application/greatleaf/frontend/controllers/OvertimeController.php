@@ -33,7 +33,7 @@ class OvertimeController extends Controller
      */
     public function actionIndex()
     {
-        if( Yii::$app->user->can('index-overtime'))
+        if( Yii::$app->user->can('view-overtime'))
         {
             $searchModel = new SearchOvertime();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -121,7 +121,7 @@ class OvertimeController extends Controller
      */
     public function actionDelete($id)
     {
-        if( Yii::$app->user->can('update-overtime'))
+        if( Yii::$app->user->can('delete-overtime'))
         {
             $this->findModel($id)->delete();
 

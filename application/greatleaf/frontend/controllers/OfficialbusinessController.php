@@ -8,6 +8,7 @@ use common\models\SearchOfficialbusiness;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * OfficialbusinessController implements the CRUD actions for Officialbusiness model.
@@ -32,13 +33,20 @@ class OfficialbusinessController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SearchOfficialbusiness();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if( Yii::$app->user->can('view-officialbusiness'))
+        {
+            $searchModel = new SearchOfficialbusiness();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }else
+        {
+            throw new ForbiddenHttpException;
+        }
+        
     }
 
     /**
@@ -60,15 +68,22 @@ class OfficialbusinessController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Officialbusiness();
+        if( Yii::$app->user->can('create-officialbusiness'))
+        {
+            $model = new Officialbusiness();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
+        }else
+        {
+            throw new ForbiddenHttpException;
         }
+        
     }
 
     /**
@@ -79,15 +94,22 @@ class OfficialbusinessController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        if( Yii::$app->user->can('update-officialbusiness'))
+        {
+            $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
+        }else
+        {
+            throw new ForbiddenHttpException;
         }
+        
     }
 
     /**
@@ -98,9 +120,15 @@ class OfficialbusinessController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if( Yii::$app->user->can('delete-officialbusiness'))
+        {
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }
+    }else
+    {
+        throw new ForbiddenHttpException;
     }
 
     /**

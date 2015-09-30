@@ -8,6 +8,7 @@ use common\models\SearchCashvoucher;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * CashvoucherController implements the CRUD actions for Cashvoucher model.
@@ -32,14 +33,22 @@ class CashvoucherController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SearchCashvoucher();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if( Yii::$app->user->can('view-cashvoucher'))
+        {
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            $searchModel = new SearchCashvoucher();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }else
+        {
+            throw new ForbiddenHttpException;
+        }
     }
+        
 
     /**
      * Displays a single Cashvoucher model.
@@ -49,7 +58,7 @@ class CashvoucherController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+        'model' => $this->findModel($id),
         ]);
     }
 
@@ -60,15 +69,22 @@ class CashvoucherController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Cashvoucher();
+        if( Yii::$app->user->can('create-cashvoucher'))
+        {
+            $model = new Cashvoucher();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
+        }else
+        {
+            throw new ForbiddenHttpException;
         }
+        
     }
 
     /**
@@ -79,15 +95,23 @@ class CashvoucherController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        if( Yii::$app->user->can('update-cashvoucher'))
+        {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            $model = $this->findModel($id);
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
+        }else
+        {
+            throw new ForbiddenHttpException;
         }
+        
     }
 
     /**
@@ -98,9 +122,16 @@ class CashvoucherController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if( Yii::$app->user->can('delete-cashvoucher'))
+        {
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);        
+        }else
+        {
+            throw new ForbiddenHttpException;
+        }
+        
     }
 
     /**

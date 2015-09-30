@@ -8,6 +8,7 @@ use common\models\SearchJobacc;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * JobaccController implements the CRUD actions for Jobacc model.
@@ -32,13 +33,19 @@ class JobaccController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SearchJobacc();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if( Yii::$app->user->can('view-jobacc'))
+        {
+            $searchModel = new SearchJobacc();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+    }else
+    {
+        throw new ForbiddenHttpException;
     }
 
     /**
@@ -60,15 +67,21 @@ class JobaccController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Jobacc();
+        if( Yii::$app->user->can('create-jobacc'))
+        {
+            $model = new Jobacc();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
+        } 
+    }else
+    {
+        throw new ForbiddenHttpException;
     }
 
     /**
@@ -79,15 +92,21 @@ class JobaccController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        if( Yii::$app->user->can('update-jobacc'))
+        {
+            $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
         }
+    }else
+    {
+        throw new ForbiddenHttpException;
     }
 
     /**
@@ -98,9 +117,15 @@ class JobaccController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if( Yii::$app->user->can('delete-jobacc'))
+        {
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }
+    }else
+    {
+        throw new ForbiddenHttpException;
     }
 
     /**
