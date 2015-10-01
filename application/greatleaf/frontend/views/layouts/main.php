@@ -40,8 +40,8 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Home', 'url' => ['/site/index']];
     } else {
         $menuItems[] = ['label' => 'My Profile', 'url' => ['/employee/view']];
-        $menuItems[] = ['label' => 'My DTR', 'url' => ['#']];
-        $menuItems[] = ['label' => 'My Requests', 'url' => ['#']];
+        $menuItems[] = ['label' => 'My DTR', 'url' => ['/dtr/view']];
+        $menuItems[] = ['label' => 'My Requests', 'url' => ['/request/view']];
         
         echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],
