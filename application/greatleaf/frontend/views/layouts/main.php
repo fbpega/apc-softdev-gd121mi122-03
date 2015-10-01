@@ -37,7 +37,7 @@ AppAsset::register($this);
     ]);
      
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Home', 'url' => ['/site/index']];
+        $menuItems[] = ['label' => 'General', 'url' => ['/site/index']];
     } else {
         $menuItems[] = ['label' => 'My Profile', 'url' => ['/employee/view']];
         $menuItems[] = ['label' => 'My DTR', 'url' => ['/dtr/view']];

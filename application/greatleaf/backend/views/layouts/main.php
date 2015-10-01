@@ -41,9 +41,9 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
         echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-left'],
+        'options' => ['class' => 'navbar-nav navbar-left'],     
         'items' => [
-                        ['label' => 'Employee', 'items' => [
+                        ['label' => 'Employees', 'items' => [
                         ['label' => 'Create Employee', 'url' => '?r=employee%2Fcreate'],
                         ['label' => 'Manage Employees', 'url' => '?r=employee%2Findex'],
                         ]],
@@ -54,8 +54,19 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-left'],
         'items' => [
                         ['label' => 'Requests', 'items' => [
-                        ['label' => 'Submission List', 'url' => '#'],
+                        ['label' => 'Requests Queue', 'url' => '#'],
                         ['label' => 'Manage Requests', 'url' => '#'],
+                        ['label' => 'History List', 'url' => '#'],
+                        ]],
+                    ],
+        ]);
+        $date = date('M d Y');
+        echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-left'],
+        'items' => [
+                        ['label' => 'Daily Track Records', 'items' => [
+                        ['label' => 'Today'.' ('.$date.')', 'url' => '#'],
+                        ['label' => 'Full DTR List', 'url' => '#'],
                         ]],
                     ],
         ]);
