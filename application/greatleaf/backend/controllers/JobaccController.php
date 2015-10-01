@@ -60,15 +60,22 @@ class JobaccController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Jobacc();
+        if( Yii::$app->user->can(`create-jobacc`))
+        {
+            $model = new Jobacc();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
+        }else
+        {
+            throw new ForbiddenHttpException;
         }
+        
     }
 
     /**

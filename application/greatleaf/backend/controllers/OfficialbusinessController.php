@@ -60,15 +60,23 @@ class OfficialbusinessController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Officialbusiness();
+        if( Yii::$app->user->can('create-officialbusiness'))
+        {
+            $model = new Officialbusiness();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
+        }else
+        {
+            throw new ForbiddenHttpException;
+            
         }
+        
     }
 
     /**
