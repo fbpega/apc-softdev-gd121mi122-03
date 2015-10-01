@@ -18,17 +18,12 @@ use Yii;
  * @property string $image
  * @property string $gender
  * @property string $dob
- * @property integer $request_id
- *
- * @property Dtr[] $dtrs
- * @property Request $request
  */
 class Employee extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
-
     public static function tableName()
     {
         return 'employee';
@@ -42,12 +37,10 @@ class Employee extends \yii\db\ActiveRecord
         return [
             [['firstname', 'lastname', 'address', 'contact', 'department', 'position', 'gender', 'dob'], 'required'],
             [['dob'], 'safe'],
-            [['request_id'], 'integer'],
             [['firstname', 'middlename', 'lastname', 'address'], 'string', 'max' => 100],
             [['contact', 'department', 'position'], 'string', 'max' => 45],
             [['image'], 'string', 'max' => 200],
-            [['gender'], 'string', 'max' => 1]
-
+            [['gender'], 'string', 'max' => 6]
         ];
     }
 
@@ -65,26 +58,9 @@ class Employee extends \yii\db\ActiveRecord
             'contact' => 'Contact',
             'department' => 'Department',
             'position' => 'Position',
-            'image' => 'Image',
+            'image' => 'Employee image',
             'gender' => 'Gender',
-            'dob' => 'Birthdate',
-            'request_id' => 'Request ID',
+            'dob' => 'Date of birth',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getDtrs()
-    {
-        return $this->hasMany(Dtr::className(), ['employee_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRequest()
-    {
-        return $this->hasOne(Request::className(), ['id' => 'request_id']);
     }
 }
