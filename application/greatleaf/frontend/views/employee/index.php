@@ -36,7 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'image',
             // 'gender',
             // 'dob',
-            // 'request_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
