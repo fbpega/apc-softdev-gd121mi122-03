@@ -39,13 +39,12 @@ class JobaccController extends Controller
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
             return $this->render('index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
             ]);
-        }
-    }else
-    {
-        throw new ForbiddenHttpException;
+        }else{
+            throw new ForbiddenHttpException;
+        }   
     }
 
     /**
@@ -67,7 +66,7 @@ class JobaccController extends Controller
      */
     public function actionCreate()
     {
-        if( Yii::$app->user->can('create-jobacc'))
+        if( Yii::$app->user->can(`create-jobacc`))
         {
             $model = new Jobacc();
 
@@ -78,11 +77,14 @@ class JobaccController extends Controller
                     'model' => $model,
                 ]);
             }
-        } 
-    }else
-    {
-        throw new ForbiddenHttpException;
+        }else
+        {
+            throw new ForbiddenHttpException;
+        }
+        
     }
+
+    
 
     /**
      * Updates an existing Jobacc model.
@@ -104,9 +106,6 @@ class JobaccController extends Controller
                 ]);
             }
         }
-    }else
-    {
-        throw new ForbiddenHttpException;
     }
 
     /**
@@ -123,9 +122,6 @@ class JobaccController extends Controller
 
             return $this->redirect(['index']);
         }
-    }else
-    {
-        throw new ForbiddenHttpException;
     }
 
     /**
