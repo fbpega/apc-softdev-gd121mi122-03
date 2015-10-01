@@ -1,0 +1,53 @@
+id		int11		notnull		ai
+username	varchar255	notnull		utf_unicode_ci
+auth_key	varchar32	notnull		utf_unicode_ci
+password_hash	varchar255	notnull		utf_unicode_ci
+password_reset_token varch255	null(default)	utf_unicode_ci
+email		varchar255	notnull		utf_unicode_ci
+status		smallint(6)	notnull		default val 10
+created_at	int(11)		notnull
+updated_at	int(11)		notnull
+
+-- -----------------------------------------------------
+-- Table `greatleafv2`.`request`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `greatleafv2`.`request` (
+  `id` INT NOT NULL COMMENT '',
+  `status` VARCHAR(10) NOT NULL COMMENT '',
+  `overtime_id` INT NOT NULL COMMENT '',
+  `jobacc_id` INT NOT NULL COMMENT '',
+  `leave_id` INT NOT NULL COMMENT '',
+  `cashvoucher_id` INT NOT NULL COMMENT '',
+  `officialbusiness_id` INT NOT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  INDEX `fk_request_overtime_idx` (`overtime_id` ASC)  COMMENT '',
+  INDEX `fk_request_jobacc1_idx` (`jobacc_id` ASC)  COMMENT '',
+  INDEX `fk_request_leave1_idx` (`leave_id` ASC)  COMMENT '',
+  INDEX `fk_request_cashvoucher1_idx` (`cashvoucher_id` ASC)  COMMENT '',
+  INDEX `fk_request_officialbusiness1_idx` (`officialbusiness_id` ASC)  COMMENT '',
+  CONSTRAINT `fk_request_overtime`
+    FOREIGN KEY (`overtime_id`)
+    REFERENCES `greatleafv2`.`overtime` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_request_jobacc1`
+    FOREIGN KEY (`jobacc_id`)
+    REFERENCES `greatleafv2`.`jobacc` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_request_leave1`
+    FOREIGN KEY (`leave_id`)
+    REFERENCES `greatleafv2`.`leave` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_request_cashvoucher1`
+    FOREIGN KEY (`cashvoucher_id`)
+    REFERENCES `greatleafv2`.`cashvoucher` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_request_officialbusiness1`
+    FOREIGN KEY (`officialbusiness_id`)
+    REFERENCES `greatleafv2`.`officialbusiness` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
