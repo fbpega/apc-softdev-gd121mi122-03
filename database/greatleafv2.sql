@@ -1,239 +1,413 @@
--- MySQL Workbench Forward Engineering
+-- phpMyAdmin SQL Dump
+-- version 4.2.11
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Oct 01, 2015 at 06:23 PM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-
--- -----------------------------------------------------
--- Schema greatleafv2
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema greatleafv2
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `greatleafv2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `greatleafv2` ;
-
--- -----------------------------------------------------
--- Table `greatleafv2`.`overtime`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `greatleafv2`.`overtime` (
-  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `filedate` DATETIME NULL COMMENT '',
-  `reason` TEXT(250) NOT NULL COMMENT '',
-  `startdate` DATE NOT NULL COMMENT '',
-  `enddate` DATE NOT NULL COMMENT '',
-  `duration` VARCHAR(45) NOT NULL COMMENT '',
-  PRIMARY KEY (`id`)  COMMENT '')
-ENGINE = InnoDB;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
--- -----------------------------------------------------
--- Table `greatleafv2`.`jobacc`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `greatleafv2`.`jobacc` (
-  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `filedate` DATETIME NULL COMMENT '',
-  `department` VARCHAR(45) NOT NULL COMMENT '',
-  `date` DATE NOT NULL COMMENT '',
-  `reason` TEXT(250) NOT NULL COMMENT '',
-  `office_timein` TIME NOT NULL COMMENT '',
-  `office_timeout` TIME NOT NULL COMMENT '',
-  `site_timein` TIME NOT NULL COMMENT '',
-  `site_timeout` TIME NOT NULL COMMENT '',
-  `destination` VARCHAR(100) NOT NULL COMMENT '',
-  `purpose` TEXT(100) NOT NULL COMMENT '',
-  `accomplishment` TEXT(250) NULL COMMENT '',
-  `remarks` TEXT(250) NULL COMMENT '',
-  PRIMARY KEY (`id`)  COMMENT '')
-ENGINE = InnoDB;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
+--
+-- Database: `greatleafv2`
+--
 
--- -----------------------------------------------------
--- Table `greatleafv2`.`leave`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `greatleafv2`.`leave` (
-  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `filedate` DATETIME NULL COMMENT '',
-  `reason` TEXT(250) NOT NULL COMMENT '',
-  `startdate` DATE NOT NULL COMMENT '',
-  `enddate` DATE NOT NULL COMMENT '',
-  `duration` VARCHAR(45) NOT NULL COMMENT '',
-  PRIMARY KEY (`id`)  COMMENT '')
-ENGINE = InnoDB;
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `auth_assignment`
+--
 
--- -----------------------------------------------------
--- Table `greatleafv2`.`cashvoucher`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `greatleafv2`.`cashvoucher` (
-  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `filedate` DATETIME NULL COMMENT '',
-  `type` VARCHAR(45) NOT NULL COMMENT '',
-  `details` TEXT(250) NOT NULL COMMENT '',
-  `particular` TINYTEXT NOT NULL COMMENT '',
-  `date` DATE NOT NULL COMMENT '',
-  `receiptno` CHAR(11) NOT NULL COMMENT '',
-  `amount` DECIMAL(10,2) NOT NULL COMMENT '',
-  `remarks` TINYTEXT NULL COMMENT '',
-  `total` DECIMAL(10,2) NOT NULL COMMENT '',
-  `less_cash_advance` DECIMAL(10,2) NOT NULL COMMENT '',
-  `amount_return` DECIMAL(10,2) NOT NULL COMMENT '',
-  PRIMARY KEY (`id`)  COMMENT '')
-ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `auth_assignment` (
+  `item_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `greatleafv2`.`officialbusiness`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `greatleafv2`.`officialbusiness` (
-  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `filedate` DATETIME NULL COMMENT '',
-  `department` VARCHAR(45) NOT NULL COMMENT '',
-  `date` DATE NOT NULL COMMENT '',
-  `reason` TEXT(250) NOT NULL COMMENT '',
-  `office_timein` TIME NOT NULL COMMENT '',
-  `office_timeout` TIME NOT NULL COMMENT '',
-  `site_timein` TIME NOT NULL COMMENT '',
-  `site_timeout` TIME NOT NULL COMMENT '',
-  `destination` VARCHAR(100) NOT NULL COMMENT '',
-  `purpose` TEXT(100) NOT NULL COMMENT '',
-  `accomplishment` TEXT(250) NULL COMMENT '',
-  `remarks` TEXT(250) NULL COMMENT '',
-  PRIMARY KEY (`id`)  COMMENT '')
-ENGINE = InnoDB;
+--
+-- Table structure for table `auth_item`
+--
 
+CREATE TABLE IF NOT EXISTS `auth_item` (
+  `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `type` int(11) NOT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `rule_name` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `data` text COLLATE utf8_unicode_ci,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- -----------------------------------------------------
--- Table `greatleafv2`.`request`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `greatleafv2`.`request` (
-  `id` INT NOT NULL COMMENT '',
-  `status` VARCHAR(10) NOT NULL COMMENT '',
-  `overtime_id` INT NOT NULL COMMENT '',
-  `jobacc_id` INT NOT NULL COMMENT '',
-  `leave_id` INT NOT NULL COMMENT '',
-  `cashvoucher_id` INT NOT NULL COMMENT '',
-  `officialbusiness_id` INT NOT NULL COMMENT '',
-  PRIMARY KEY (`id`)  COMMENT '',
-  INDEX `fk_request_overtime_idx` (`overtime_id` ASC)  COMMENT '',
-  INDEX `fk_request_jobacc1_idx` (`jobacc_id` ASC)  COMMENT '',
-  INDEX `fk_request_leave1_idx` (`leave_id` ASC)  COMMENT '',
-  INDEX `fk_request_cashvoucher1_idx` (`cashvoucher_id` ASC)  COMMENT '',
-  INDEX `fk_request_officialbusiness1_idx` (`officialbusiness_id` ASC)  COMMENT '',
-  CONSTRAINT `fk_request_overtime`
-    FOREIGN KEY (`overtime_id`)
-    REFERENCES `greatleafv2`.`overtime` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_request_jobacc1`
-    FOREIGN KEY (`jobacc_id`)
-    REFERENCES `greatleafv2`.`jobacc` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_request_leave1`
-    FOREIGN KEY (`leave_id`)
-    REFERENCES `greatleafv2`.`leave` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_request_cashvoucher1`
-    FOREIGN KEY (`cashvoucher_id`)
-    REFERENCES `greatleafv2`.`cashvoucher` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_request_officialbusiness1`
-    FOREIGN KEY (`officialbusiness_id`)
-    REFERENCES `greatleafv2`.`officialbusiness` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `auth_item_child`
+--
 
--- -----------------------------------------------------
--- Table `greatleafv2`.`employee`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `greatleafv2`.`employee` (
-  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `firstname` VARCHAR(100) NOT NULL COMMENT '',
-  `middlename` VARCHAR(100) NULL COMMENT '',
-  `lastname` VARCHAR(100) NOT NULL COMMENT '',
-  `address` VARCHAR(100) NOT NULL COMMENT '',
-  `contact` VARCHAR(45) NOT NULL COMMENT '',
-  `department` VARCHAR(45) NOT NULL COMMENT '',
-  `position` VARCHAR(45) NOT NULL COMMENT '',
-  `image` VARCHAR(200) NULL COMMENT '',
-  `gender` CHAR(1) NOT NULL COMMENT '',
-  `dob` DATE NOT NULL COMMENT '',
-  `request_id` INT NULL COMMENT '',
-  PRIMARY KEY (`id`)  COMMENT '',
-  INDEX `fk_employee_request1_idx` (`request_id` ASC)  COMMENT '',
-  CONSTRAINT `fk_employee_request1`
-    FOREIGN KEY (`request_id`)
-    REFERENCES `greatleafv2`.`request` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `auth_item_child` (
+  `parent` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `child` varchar(64) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `greatleafv2`.`dtr`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `greatleafv2`.`dtr` (
-  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `login` TIMESTAMP NULL COMMENT '',
-  `logout` TIMESTAMP NULL COMMENT '',
-  `employee_id` INT NOT NULL COMMENT '',
-  PRIMARY KEY (`id`)  COMMENT '',
-  INDEX `fk_dtr_employee1_idx` (`employee_id` ASC)  COMMENT '',
-  CONSTRAINT `fk_dtr_employee1`
-    FOREIGN KEY (`employee_id`)
-    REFERENCES `greatleafv2`.`employee` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+--
+-- Table structure for table `auth_rule`
+--
 
-create table `auth_rule`
-(
-`name` varchar(64) not null,
-`data` text,
-`created_at` integer,
-`updated_at` integer, primary key (`name`)
-) engine InnoDB;
+CREATE TABLE IF NOT EXISTS `auth_rule` (
+  `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `data` text COLLATE utf8_unicode_ci,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-create table `auth_item`
-(
-`name` varchar(64) not null,
-`type` integer not null,
-`description` text,
-`rule_name` varchar(64),
-`data` text,
-`created_at` integer,
-`updated_at` integer,
-primary key (`name`),
-foreign key (`rule_name`) references `auth_rule` (`name`) on delete set null on update cascade,
-key `type` (`type`)
-) engine InnoDB;
+-- --------------------------------------------------------
 
-create table `auth_item_child`
-(
-`parent` varchar(64) not null,
-`child` varchar(64) not null,
-primary key (`parent`, `child`),
-foreign key (`parent`) references `auth_item` (`name`) on delete cascade on update cascade,
-foreign key (`child`) references `auth_item` (`name`) on delete cascade on update cascade
-) engine InnoDB;
+--
+-- Table structure for table `cashvoucher`
+--
 
-create table `auth_assignment`
-(
-`item_name` varchar(64) not null,
-`user_id` varchar(64) not null,
-`created_at` integer,
-primary key (`item_name`, `user_id`),
-foreign key (`item_name`) references `auth_item` (`name`) on delete cascade on update cascade
-) engine InnoDB;
+CREATE TABLE IF NOT EXISTS `cashvoucher` (
+`id` int(11) NOT NULL,
+  `filedby` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `filedate` datetime DEFAULT NULL,
+  `type` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `details` text COLLATE utf8_unicode_ci NOT NULL,
+  `particular` tinytext COLLATE utf8_unicode_ci NOT NULL,
+  `date` date NOT NULL,
+  `receiptno` char(11) COLLATE utf8_unicode_ci NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `remarks` tinytext COLLATE utf8_unicode_ci,
+  `total` decimal(10,2) NOT NULL,
+  `less_cash_advance` decimal(10,2) NOT NULL,
+  `amount_return` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `dtr`
+--
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+CREATE TABLE IF NOT EXISTS `dtr` (
+`id` int(11) NOT NULL,
+  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `login` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `logout` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee`
+--
+
+CREATE TABLE IF NOT EXISTS `employee` (
+`id` int(11) NOT NULL,
+  `firstname` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `middlename` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lastname` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `contact` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `department` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `position` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `gender` char(1) COLLATE utf8_unicode_ci NOT NULL,
+  `dob` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobacc`
+--
+
+CREATE TABLE IF NOT EXISTS `jobacc` (
+`id` int(11) NOT NULL,
+  `filedby` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `filedate` datetime DEFAULT NULL,
+  `department` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `date` date NOT NULL,
+  `reason` text COLLATE utf8_unicode_ci NOT NULL,
+  `office_timein` time NOT NULL,
+  `office_timeout` time NOT NULL,
+  `site_timein` time NOT NULL,
+  `site_timeout` time NOT NULL,
+  `destination` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `purpose` text COLLATE utf8_unicode_ci NOT NULL,
+  `accomplishment` text COLLATE utf8_unicode_ci,
+  `remarks` text COLLATE utf8_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `leave`
+--
+
+CREATE TABLE IF NOT EXISTS `leave` (
+`id` int(11) NOT NULL,
+  `filedby` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `filedate` datetime DEFAULT NULL,
+  `reason` text COLLATE utf8_unicode_ci NOT NULL,
+  `startdate` date NOT NULL,
+  `enddate` date NOT NULL,
+  `duration` varchar(45) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `officialbusiness`
+--
+
+CREATE TABLE IF NOT EXISTS `officialbusiness` (
+`id` int(11) NOT NULL,
+  `filedby` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `filedate` datetime DEFAULT NULL,
+  `department` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `date` date NOT NULL,
+  `reason` text COLLATE utf8_unicode_ci NOT NULL,
+  `office_timein` time NOT NULL,
+  `office_timeout` time NOT NULL,
+  `site_timein` time NOT NULL,
+  `site_timeout` time NOT NULL,
+  `destination` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `purpose` text COLLATE utf8_unicode_ci NOT NULL,
+  `accomplishment` text COLLATE utf8_unicode_ci,
+  `remarks` text COLLATE utf8_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `overtime`
+--
+
+CREATE TABLE IF NOT EXISTS `overtime` (
+`id` int(11) NOT NULL,
+  `filedby` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `filedate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `reason` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `startdate` date NOT NULL,
+  `enddate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+`id` int(11) NOT NULL,
+  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` smallint(6) NOT NULL DEFAULT '10',
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'acbalutan', '6tsqEfqARo2GC8dk3cwbyZBtIecip-5w', '$2y$13$0wZnwU9WDsXoi4GNQotALeku58pBJuo8jCXP9vfZkStxt55yTaa96', NULL, 'acbalutan@student.apc.edu.ph', 10, 1443710622, 1443710622);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `auth_assignment`
+--
+ALTER TABLE `auth_assignment`
+ ADD PRIMARY KEY (`item_name`,`user_id`);
+
+--
+-- Indexes for table `auth_item`
+--
+ALTER TABLE `auth_item`
+ ADD PRIMARY KEY (`name`), ADD KEY `rule_name` (`rule_name`), ADD KEY `type` (`type`);
+
+--
+-- Indexes for table `auth_item_child`
+--
+ALTER TABLE `auth_item_child`
+ ADD PRIMARY KEY (`parent`,`child`), ADD KEY `child` (`child`);
+
+--
+-- Indexes for table `auth_rule`
+--
+ALTER TABLE `auth_rule`
+ ADD PRIMARY KEY (`name`);
+
+--
+-- Indexes for table `cashvoucher`
+--
+ALTER TABLE `cashvoucher`
+ ADD PRIMARY KEY (`id`), ADD KEY `filedby` (`filedby`);
+
+--
+-- Indexes for table `dtr`
+--
+ALTER TABLE `dtr`
+ ADD PRIMARY KEY (`id`), ADD KEY `username` (`username`);
+
+--
+-- Indexes for table `employee`
+--
+ALTER TABLE `employee`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jobacc`
+--
+ALTER TABLE `jobacc`
+ ADD PRIMARY KEY (`id`), ADD KEY `filedby` (`filedby`);
+
+--
+-- Indexes for table `leave`
+--
+ALTER TABLE `leave`
+ ADD PRIMARY KEY (`id`), ADD KEY `filedby` (`filedby`);
+
+--
+-- Indexes for table `officialbusiness`
+--
+ALTER TABLE `officialbusiness`
+ ADD PRIMARY KEY (`id`), ADD KEY `filedby` (`filedby`);
+
+--
+-- Indexes for table `overtime`
+--
+ALTER TABLE `overtime`
+ ADD PRIMARY KEY (`id`), ADD KEY `filedby` (`filedby`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `cashvoucher`
+--
+ALTER TABLE `cashvoucher`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `dtr`
+--
+ALTER TABLE `dtr`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `employee`
+--
+ALTER TABLE `employee`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jobacc`
+--
+ALTER TABLE `jobacc`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `leave`
+--
+ALTER TABLE `leave`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `officialbusiness`
+--
+ALTER TABLE `officialbusiness`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `overtime`
+--
+ALTER TABLE `overtime`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `auth_assignment`
+--
+ALTER TABLE `auth_assignment`
+ADD CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `auth_item`
+--
+ALTER TABLE `auth_item`
+ADD CONSTRAINT `auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `auth_item_child`
+--
+ALTER TABLE `auth_item_child`
+ADD CONSTRAINT `auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `cashvoucher`
+--
+ALTER TABLE `cashvoucher`
+ADD CONSTRAINT `filedby_cashvoucher` FOREIGN KEY (`filedby`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `dtr`
+--
+ALTER TABLE `dtr`
+ADD CONSTRAINT `username_dtr` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `jobacc`
+--
+ALTER TABLE `jobacc`
+ADD CONSTRAINT `filedby_jobacc` FOREIGN KEY (`filedby`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `leave`
+--
+ALTER TABLE `leave`
+ADD CONSTRAINT `filedby_leave` FOREIGN KEY (`filedby`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `officialbusiness`
+--
+ALTER TABLE `officialbusiness`
+ADD CONSTRAINT `filedby_officialbusiness` FOREIGN KEY (`filedby`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `overtime`
+--
+ALTER TABLE `overtime`
+ADD CONSTRAINT `filedby_overtime` FOREIGN KEY (`filedby`) REFERENCES `user` (`username`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
