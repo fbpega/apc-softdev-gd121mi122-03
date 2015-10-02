@@ -29,11 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
+            'filedby',
             'filedate',
             'reason:ntext',
             'startdate',
             'enddate',
-            'duration',
         ],
     ]) ?>
 

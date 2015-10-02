@@ -19,7 +19,7 @@ class SearchOvertime extends Overtime
     {
         return [
             [['id'], 'integer'],
-            [['filedate', 'reason', 'startdate', 'enddate', 'duration'], 'safe'],
+            [['filedby', 'filedate', 'reason', 'startdate', 'enddate'], 'safe'],
         ];
     }
 
@@ -62,8 +62,8 @@ class SearchOvertime extends Overtime
             'enddate' => $this->enddate,
         ]);
 
-        $query->andFilterWhere(['like', 'reason', $this->reason])
-            ->andFilterWhere(['like', 'duration', $this->duration]);
+        $query->andFilterWhere(['like', 'filedby', $this->filedby])
+            ->andFilterWhere(['like', 'reason', $this->reason]);
 
         return $dataProvider;
     }

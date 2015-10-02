@@ -26,11 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
+            'filedby',
             'filedate',
             'reason:ntext',
             'startdate',
-            'enddate',
-            // 'duration',
+            // 'enddate',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -8,13 +8,13 @@ use Yii;
  * This is the model class for table "overtime".
  *
  * @property integer $id
+ * @property string $filedby
  * @property string $filedate
  * @property string $reason
  * @property string $startdate
  * @property string $enddate
- * @property string $duration
  *
- * @property Request[] $requests
+ * @property User $filedby0
  */
 class Overtime extends \yii\db\ActiveRecord
 {
@@ -32,10 +32,10 @@ class Overtime extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['filedby', 'reason', 'startdate', 'enddate'], 'required'],
             [['filedate', 'startdate', 'enddate'], 'safe'],
-            [['reason', 'startdate', 'enddate', 'duration'], 'required'],
             [['reason'], 'string'],
-            [['duration'], 'string', 'max' => 45]
+            [['filedby'], 'string', 'max' => 255]
         ];
     }
 
@@ -46,19 +46,19 @@ class Overtime extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'filedate' => 'Filedate',
+            'filedby' => 'Name',
+            'filedate' => 'Date filed',
             'reason' => 'Reason',
-            'startdate' => 'Startdate',
-            'enddate' => 'Enddate',
-            'duration' => 'Duration',
+            'startdate' => 'Start date',
+            'enddate' => 'End date',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRequests()
+    public function getFiledby0()
     {
-        return $this->hasMany(Request::className(), ['overtime_id' => 'id']);
+        return $this->hasOne(User::className(), ['username' => 'filedby']);
     }
 }
