@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Overtime */
 
-$this->title = 'Create Overtime';
+$this->title = 'Create overtime request';
 $this->params['breadcrumbs'][] = ['label' => 'Overtimes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
