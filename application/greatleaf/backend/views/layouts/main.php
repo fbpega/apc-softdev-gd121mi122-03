@@ -55,7 +55,7 @@ AppAsset::register($this);
         'items' => [
                         ['label' => 'Requests', 'items' => [
                         ['label' => 'Requests Queue', 'url' => '?r=site%2Frequests'],
-                        ['label' => 'Manage Requests', 'url' => '?r=site%2Fmanagerequests'],
+                        ['label' => 'Manage Requests', 'url' => '?r=overtime%2Fmanagerequests'],
                         ]],
                     ],
         ]);

@@ -39,8 +39,8 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'General', 'url' => ['/site/index']];
     } else {
-        $menuItems[] = ['label' => 'My Profile', 'url' => ['/employee/view']];
-        $menuItems[] = ['label' => 'My DTR', 'url' => ['/dtr/view']];
+        $menuItems[] = ['label' => 'My Profile', 'url' => ['/overtime/view', 'username' => Yii::$app->user->identity->username]];
+        $menuItems[] = ['label' => 'My DTR', 'url' => ['/dtr/view', 'id' => Yii::$app->user->identity->id]];
         $menuItems[] = ['label' => 'My Requests', 'url' => ['/site/requests']];
         
         echo Nav::widget([
