@@ -19,7 +19,7 @@ class SearchOfficialbusiness extends Officialbusiness
     {
         return [
             [['id'], 'integer'],
-            [['filedate', 'department', 'date', 'reason', 'office_timein', 'office_timeout', 'site_timein', 'site_timeout', 'destination', 'purpose', 'accomplishment', 'remarks'], 'safe'],
+            [['filedby', 'filedate', 'department', 'date', 'reason', 'office_timein', 'office_timeout', 'site_timein', 'site_timeout', 'destination', 'purpose', 'accomplishment', 'remarks'], 'safe'],
         ];
     }
 
@@ -59,14 +59,15 @@ class SearchOfficialbusiness extends Officialbusiness
             'id' => $this->id,
             'filedate' => $this->filedate,
             'date' => $this->date,
-            'office_timein' => $this->office_timein,
-            'office_timeout' => $this->office_timeout,
-            'site_timein' => $this->site_timein,
-            'site_timeout' => $this->site_timeout,
         ]);
 
-        $query->andFilterWhere(['like', 'department', $this->department])
+        $query->andFilterWhere(['like', 'filedby', $this->filedby])
+            ->andFilterWhere(['like', 'department', $this->department])
             ->andFilterWhere(['like', 'reason', $this->reason])
+            ->andFilterWhere(['like', 'office_timein', $this->office_timein])
+            ->andFilterWhere(['like', 'office_timeout', $this->office_timeout])
+            ->andFilterWhere(['like', 'site_timein', $this->site_timein])
+            ->andFilterWhere(['like', 'site_timeout', $this->site_timeout])
             ->andFilterWhere(['like', 'destination', $this->destination])
             ->andFilterWhere(['like', 'purpose', $this->purpose])
             ->andFilterWhere(['like', 'accomplishment', $this->accomplishment])

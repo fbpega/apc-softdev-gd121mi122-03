@@ -46,10 +46,10 @@ class Leave extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'filedate' => 'Filedate',
+            'filedate' => 'File date',
             'reason' => 'Reason',
-            'startdate' => 'Startdate',
-            'enddate' => 'Enddate',
+            'startdate' => 'Start date',
+            'enddate' => 'End date',
             'duration' => 'Duration',
         ];
     }

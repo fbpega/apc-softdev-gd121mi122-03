@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "officialbusiness".
  *
  * @property integer $id
+ * @property string $filedby
  * @property string $filedate
  * @property string $department
  * @property string $date
@@ -21,7 +22,7 @@ use Yii;
  * @property string $accomplishment
  * @property string $remarks
  *
- * @property Request[] $requests
+ * @property User $filedby0
  */
 class Officialbusiness extends \yii\db\ActiveRecord
 {
@@ -39,10 +40,12 @@ class Officialbusiness extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['filedate', 'date', 'office_timein', 'office_timeout', 'site_timein', 'site_timeout'], 'safe'],
-            [['department', 'date', 'reason', 'office_timein', 'office_timeout', 'site_timein', 'site_timeout', 'destination', 'purpose'], 'required'],
+            [['filedby', 'department', 'date', 'reason', 'office_timein', 'office_timeout', 'site_timein', 'site_timeout', 'destination', 'purpose'], 'required'],
+            [['filedate', 'date'], 'safe'],
             [['reason', 'purpose', 'accomplishment', 'remarks'], 'string'],
+            [['filedby'], 'string', 'max' => 255],
             [['department'], 'string', 'max' => 45],
+            [['office_timein', 'office_timeout', 'site_timein', 'site_timeout'], 'string', 'max' => 50],
             [['destination'], 'string', 'max' => 100]
         ];
     }
@@ -54,6 +57,7 @@ class Officialbusiness extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'filedby' => 'Filedby',
             'filedate' => 'Filedate',
             'department' => 'Department',
             'date' => 'Date',
@@ -72,8 +76,8 @@ class Officialbusiness extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRequests()
+    public function getFiledby0()
     {
-        return $this->hasMany(Request::className(), ['officialbusiness_id' => 'id']);
+        return $this->hasOne(User::className(), ['username' => 'filedby']);
     }
 }

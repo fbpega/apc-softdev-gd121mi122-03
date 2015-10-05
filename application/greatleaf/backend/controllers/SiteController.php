@@ -6,6 +6,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
+use common\models\SearchOvertime;
 
 /**
  * Site controller
@@ -22,7 +23,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error','requests','managerequests'],
                         'allow' => true,
                     ],
                     [
@@ -51,6 +52,28 @@ class SiteController extends Controller
                 'class' => 'yii\web\ErrorAction',
             ],
         ];
+    }
+
+    public function actionRequests()
+    {
+        $searchModel = new SearchOvertime();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('requests', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionManagerequests()
+    {
+        $searchModel = new SearchOvertime();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('managerequests', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     public function actionIndex()

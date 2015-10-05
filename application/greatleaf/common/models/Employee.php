@@ -50,17 +50,17 @@ class Employee extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'firstname' => 'First name',
-            'middlename' => 'Middle name',
-            'lastname' => 'Last name',
+            'id' => 'Employee ID',
+            'firstname' => 'First Name',
+            'middlename' => 'Middle Name',
+            'lastname' => 'Last Name',
             'address' => 'Address',
             'contact' => 'Contact',
             'department' => 'Department',
             'position' => 'Position',
-            'image' => 'Employee image',
+            'image' => 'Employee Image',
             'gender' => 'Gender',
-            'dob' => 'Date of birth',
+            'dob' => 'Date of Birth',
         ];
     }
 }

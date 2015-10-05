@@ -54,9 +54,8 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-left'],
         'items' => [
                         ['label' => 'Requests', 'items' => [
-                        ['label' => 'Requests Queue', 'url' => '#'],
-                        ['label' => 'Manage Requests', 'url' => '#'],
-                        ['label' => 'History List', 'url' => '#'],
+                        ['label' => 'Requests Queue', 'url' => '?r=site%2Frequests'],
+                        ['label' => 'Manage Requests', 'url' => '?r=site%2Fmanagerequests'],
                         ]],
                     ],
         ]);

@@ -17,6 +17,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
+    <?= $form->field($model, 'filedby') ?>
+
     <?= $form->field($model, 'filedate') ?>
 
     <?= $form->field($model, 'reason') ?>
@@ -24,8 +26,6 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'startdate') ?>
 
     <?= $form->field($model, 'enddate') ?>
-
-    <?php // echo $form->field($model, 'duration') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

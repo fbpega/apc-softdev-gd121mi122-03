@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Overtime */
 
-$this->title = $model->id;
+$this->title = 'Overtime request '.$model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Overtimes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Are you sure you want to delete '.$this->title,
                 'method' => 'post',
             ],
         ]) ?>
@@ -29,11 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
+            'filedby',
             'filedate',
             'reason:ntext',
             'startdate',
             'enddate',
-            'duration',
         ],
     ]) ?>
 

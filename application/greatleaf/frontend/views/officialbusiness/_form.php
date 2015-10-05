@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use common\models\User;
+use dosamigos\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Officialbusiness */
@@ -12,21 +15,34 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'filedate')->textInput() ?>
+    <?= $form->field($model, 'filedby')->dropDownList(
+        ArrayHelper::map(User::find()->all(),'username','username'),
+        ['prompt'=> 'Select username ...']
+    )?>
 
     <?= $form->field($model, 'department')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'date')->textInput() ?>
+    <?= $form->field($model, 'date')->widget(
+    DatePicker::className(), [
+        // inline too, not bad
+         'inline' => false, 
+         // modify template for custom rendering
+        //'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+        'clientOptions' => [
+            'autoclose' => true,
+            'format' => 'MM dd yyyy'
+        ]
+    ]);?>
 
     <?= $form->field($model, 'reason')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'office_timein')->textInput() ?>
+    <?= $form->field($model, 'office_timein')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'office_timeout')->textInput() ?>
+    <?= $form->field($model, 'office_timeout')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'site_timein')->textInput() ?>
+    <?= $form->field($model, 'site_timein')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'site_timeout')->textInput() ?>
+    <?= $form->field($model, 'site_timeout')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'destination')->textInput(['maxlength' => true]) ?>
 

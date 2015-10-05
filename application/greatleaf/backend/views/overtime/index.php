@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\SearchOvertime */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Overtimes';
+$this->title = 'Overtime requests';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="overtime-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create Overtime', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
+    <br />
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -26,11 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
+            'filedby',
             'filedate',
             'reason:ntext',
             'startdate',
             'enddate',
-            // 'duration',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

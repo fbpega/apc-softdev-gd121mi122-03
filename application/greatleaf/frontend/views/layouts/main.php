@@ -41,7 +41,7 @@ AppAsset::register($this);
     } else {
         $menuItems[] = ['label' => 'My Profile', 'url' => ['/employee/view']];
         $menuItems[] = ['label' => 'My DTR', 'url' => ['/dtr/view']];
-        $menuItems[] = ['label' => 'My Requests', 'url' => ['/request/view']];
+        $menuItems[] = ['label' => 'My Requests', 'url' => ['/site/requests']];
         
         echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],

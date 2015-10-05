@@ -17,13 +17,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
+    <?= $form->field($model, 'filedby') ?>
+
     <?= $form->field($model, 'filedate') ?>
 
     <?= $form->field($model, 'department') ?>
 
     <?= $form->field($model, 'date') ?>
 
-    <?= $form->field($model, 'reason') ?>
+    <?php // echo $form->field($model, 'reason') ?>
 
     <?php // echo $form->field($model, 'office_timein') ?>
 
