@@ -30,7 +30,7 @@ AppAsset::register($this);
     <?php
     NavBar::begin([
         'brandLabel' => 'Greatleaf Land Inc.',
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandUrl' => '?r=site%2Femployee', //Yii:$app->homeUrl
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
@@ -39,7 +39,7 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'General', 'url' => ['/site/index']];
     } else {
-        $menuItems[] = ['label' => 'My Profile', 'url' => ['/overtime/view', 'username' => Yii::$app->user->identity->username]];
+        $menuItems[] = ['label' => 'My Profile', 'url' => ['/employee/view', 'id' => Yii::$app->user->identity->id]];
         $menuItems[] = ['label' => 'My DTR', 'url' => ['/dtr/view', 'id' => Yii::$app->user->identity->id]];
         $menuItems[] = ['label' => 'My Requests', 'url' => ['/site/requests']];
         

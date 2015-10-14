@@ -75,6 +75,12 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    // Redirects index to employee page
+    public function actionEmployee()
+    {
+        return $this->render('employee');
+    }
+
     /**
      * Logs in a user.
      *
